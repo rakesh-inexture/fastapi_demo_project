@@ -1,47 +1,67 @@
-from enum import Enum
-from typing import Union, List
-from fastapi import Body, FastAPI, Query, Path
-from pydantic import BaseModel, Required
-
-
-class Item(BaseModel):
-    name: str
-    price: float
-    is_offer: Union[bool, None] = None
-
-
-class ModelName(str, Enum):
-    alexnet = "alexnet"
-    resnet = "resnet"
-    lenet = "lenet"
-
-
-fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
-
-
-class Item(BaseModel):
-    name: str
-    description: Union[str, None] = None
-    price: float
-    tax: Union[float, None] = None
-
-
-class User(BaseModel):
-    username: str
-    full_name: Union[str, None] = None
-
+from fastapi import FastAPI, Request
+import uvicorn
 
 app = FastAPI()
 
 
 @app.get("/")
-def root():
-    return {"Hello Rakesh"}
+async def signin(request:Request):
+    return {"message": "HELLO WORLD"}
 
 
-@app.get("/hello/{name}")
-def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+if __name__ == '__main__':
+        uvicorn.run(
+        "app:app",
+        host    = "0.0.0.0",
+        port    = 8037,
+        reload  = True
+    )
+
+
+# from enum import Enum
+# from typing import Union, List
+# from fastapi import Body, FastAPI, Query, Path
+# from pydantic import BaseModel, Required
+
+
+# class Item(BaseModel):
+#     name: str
+#     price: float
+#     is_offer: Union[bool, None] = None
+
+
+# class ModelName(str, Enum):
+#     alexnet = "alexnet"
+#     resnet = "resnet"
+#     lenet = "lenet"
+
+
+# fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
+
+
+# class Item(BaseModel):
+#     name: str
+#     description: Union[str, None] = None
+#     price: float
+#     tax: Union[float, None] = None
+
+
+# class User(BaseModel):
+#     username: str
+#     full_name: Union[str, None] = None
+
+
+# app = FastAPI()
+
+
+# @app.get("/")
+# def root():
+#     return {"Hello Rakesh"}
+
+
+# @app.get("/hello/{name}")
+# def say_hello(name: str):
+#     return {"message": f"Hello {name}"}
 
 
 # @app.get("/items/{item_id}")
@@ -238,16 +258,16 @@ def say_hello(name: str):
 # Multiple body params and query¶
 
 
-@app.put("/items/{item_id}")
-async def update_item(
-        *,
-        item_id: int,
-        item: Item,
-        user: User,
-        importance: int = Body(gt=0),
-        q: Union[str, None] = None
-):
-    results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
-    if q:
-        results.update({"q": q})
-    return results
+# @app.put("/items/{item_id}")
+# async def update_item(
+#         *,
+#         item_id: int,
+#         item: Item,
+#         user: User,
+#         importance: int = Body(gt=0),
+#         q: Union[str, None] = None
+# ):
+#     results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
+#     if q:
+#         results.update({"q": q})
+#     return results
