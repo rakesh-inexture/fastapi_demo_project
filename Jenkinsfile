@@ -7,6 +7,13 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rakesh-inexture/fastapi-practice.git']])
             }
         }
+
+        stage('Test Sudo') {
+            steps {
+                sh "sudo echo 'Sudo test successful'"
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'sudo apt update'
