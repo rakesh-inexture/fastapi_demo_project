@@ -18,11 +18,5 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            script {
-                slackSend channel: "#jenkinfastapi", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
-            }
-        }
-    }
+    
 }
