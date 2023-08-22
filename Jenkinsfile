@@ -10,14 +10,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                
-                sh "/usr/bin/python3 -m pip install -r requirements.txt"
-                
+                sh "/usr/bin/python3.10 -m pip install -r requirements.txt"
             }
         }
+
         stage('Test') {
             steps {
-                sh "python3 -m pytest"
+                sh "/usr/bin/python3.10 -m pytest"
             }
         }
     } 
