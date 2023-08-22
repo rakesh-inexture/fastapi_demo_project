@@ -19,5 +19,11 @@ pipeline {
                 sh "python3 -m pytest"
             }
         }
+        
+        stage('Deploy') {
+            steps {
+                sh "./deploy.sh"  // Run the deployment script
+            }
+        }
     } 
 }
