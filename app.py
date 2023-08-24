@@ -6,7 +6,7 @@ app = FastAPI()
 
 @app.get("/")
 async def signin(request:Request):
-    return {"message": "Welcome Shubham Bhai"}
+    return {"message": "Welcome Rakesh"}
 
 if __name__ == '__main__':
         uvicorn.run(
