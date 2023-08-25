@@ -16,12 +16,12 @@ pipeline {
                 sh "python3 -m pytest"
             }
         }
-        stage('Update and Install Dependencies') {
-            steps {
-                sh "cd fastapi-practice/"
-                sh "git pull"
-                sh "pip install -r requirements.txt"
-            }
-        }
+        // stage('Update and Install Dependencies') {
+        //     steps {
+        //         sh "cd fastapi-practice/"
+        //         sh "git pull"
+        //         sh "pip install -r requirements.txt"
+        //     }
+        // }
     }
 }
