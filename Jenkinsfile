@@ -1,17 +1,21 @@
 pipeline {
     agent any
-
- 
-
     stages {
-        stage('Clone GitHub repo') {
+        stage('Checkout') {
             steps {
-                git(
-                    url: 'https://github.com/rakesh-inexture/fastapi-practice.git,
-                    branch: 'main',
-                    credentialsId: 'jenkins.pem'
-                )
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rakesh-inexture/fastapi-practice.git']])
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "pip install -r requirements.txt"
+            }
+        }
+        stage('Test') {
+            steps {
+                sh "python3 -m pytest"
             }
         }
     }
+  
 }
