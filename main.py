@@ -6,7 +6,7 @@ app = FastAPI()
 
 @app.get("/")
 async def signin(request:Request):
-    return {"message": "HELLO WORLD"}
+    return {"message": "HELLO RAKESH"}
 
 
 if __name__ == '__main__':
